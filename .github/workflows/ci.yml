@@ -16,7 +16,7 @@ jobs:
           - "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\MSBuild\\Current\\Bin\\msbuild"
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Windows Build
         if: ${{ matrix.os == 'windows-2019' }}
         shell: cmd
