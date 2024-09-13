@@ -75,3 +75,9 @@ jobs:
           cmake .. -DZLIB_INCLUDE_DIR=..\deps\zlib -DZLIB_LIBRARY=..\deps\zlib\debug\zlibstaticd.lib -DJPEG_INCLUDE_DIR=..\deps\libjpeg -DJPEG_LIBRARY_DEBUG=..\deps\libjpeg\debug\turbojpeg-static.lib -DPNG_PNG_INCLUDE_DIR=..\deps\libpng -DPNG_LIBRARY=..\deps\libpng\debug\libpng16_staticd.lib -D SASL2_INCLUDE_DIR=c:\cmu\include -D LIBSASL2_LIBRARIES=c:\cmu\lib\libsasl.lib ..
           cmake --build .
           ctest -C Debug --output-on-failure
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build
+          path: |
+            build
