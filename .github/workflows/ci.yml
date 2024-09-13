@@ -11,9 +11,9 @@ jobs:
         VSDEVCMD_BAT:
           - "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\Common7\\Tools\\VsDevCmd.bat"
         DEVENV:
-          - "C:\\Program Files\\Microsoft Visual Studio\\2019\\Enterprise\\Common7\\IDE\\devenv"
+          - "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\Common7\\IDE\\devenv"
         MSBUILD:
-          - "C:\\Program Files\\Microsoft Visual Studio\\2019\\Enterprise\\MSBuild\\Current\\Bin\\msbuild"
+          - "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\MSBuild\\Current\\Bin\\msbuild"
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
