@@ -51,8 +51,8 @@ jobs:
           move db-4.1.25 db
           cd db\build_win32
           echo using ${{ matrix.DEVENV }} 
-          ${{ matrix.DEVENV }} db_dll.dsp /upgrade
-          ${{ matrix.MSBUILD }} /p:Configuration=Release db_dll.vcxproj
+          "${{ matrix.DEVENV }}" db_dll.dsp /upgrade
+          "${{ matrix.MSBUILD }}" /p:Configuration=Release db_dll.vcxproj
           exit /b
           cd ..\..
             ::Cyrus SASL
@@ -61,8 +61,8 @@ jobs:
           move cyrus-sasl-2.1.26 sasl
           cd sasl
           patch -p1 -i ..\sasl-fix-snprintf-macro.patch
-          echo using vsdevcmd %VSDEVCMD_BAT%
-          '%VSDEVCMD_BAT%'
+          echo using vsdevcmd ${{ matrix.VSDEVCMD_BAT }}
+          '${{ matrix.VSDEVCMD_BAT }}'
           nmake /f NTMakefile OPENSSL_INCLUDE=c:\OpenSSL-Win32\include OPENSSL_LIBPATH=c:\OpenSSL-Win32\lib DB_INCLUDE=c:\projects\libvncserver\deps\db\build_win32 DB_LIBPATH=c:\projects\libvncserver\deps\db\build_win32\release DB_LIB=libdb41.lib install
           cd ..
             ::go back to source root
