@@ -29,6 +29,8 @@ jobs:
           set PATH=%PATH%;"${{ matrix.MSBUILD }}"
           set PATH=%PATH%;"${{ matrix.NMAKE }}"
           set PATH=%PATH%;"${{ matrix.RC }}"
+          cd "${{ matrix.RC }}"
+          dir
           ::zlib
           curl -fsSL -o zlib.tar.gz https://github.com/madler/zlib/archive/v1.2.8.tar.gz
           7z x zlib.tar.gz -so | 7z x -si -ttar > nul
