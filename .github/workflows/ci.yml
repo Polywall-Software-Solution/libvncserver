@@ -11,11 +11,13 @@ jobs:
         VSDEVCMD_BAT:
           - "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\Common7\\Tools\\VsDevCmd.bat"
         DEVENV:
-          - "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\Common7\\IDE\\devenv"
+          - "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\Common7\\IDE"
         MSBUILD:
-          - "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\MSBuild\\Current\\Bin\\msbuild"
+          - "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\MSBuild\\Current\\Bin"
         NMAKE:
-          - "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\VC\\Tools\\MSVC\\14.29.30133\\bin\\Hostx64\\x64\\nmake"
+          - "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\VC\\Tools\\MSVC\\14.29.30133\\bin\\Hostx64\\x64"
+        RC:
+          - "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\SDK\\ScopeCppSDK\\vc15\\SDK\\\bin"
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
@@ -23,6 +25,10 @@ jobs:
         if: ${{ matrix.os == 'windows-2019' }}
         shell: cmd
         run: |
+          set PATH=%PATH%;"${{ matrix.DEVENV }}"
+          set PATH=%PATH%;"${{ matrix.MSBUILD }}"
+          set PATH=%PATH%;"${{ matrix.NMAKE }}"
+          set PATH=%PATH%;"${{ matrix.RC }}"
           ::zlib
           curl -fsSL -o zlib.tar.gz https://github.com/madler/zlib/archive/v1.2.8.tar.gz
           7z x zlib.tar.gz -so | 7z x -si -ttar > nul
@@ -53,8 +59,8 @@ jobs:
           move db-4.1.25 db
           cd db\build_win32
           echo using ${{ matrix.DEVENV }} 
-          "${{ matrix.DEVENV }}" db_dll.dsp /upgrade
-          "${{ matrix.MSBUILD }}" /p:Configuration=Release db_dll.vcxproj
+          devenv db_dll.dsp /upgrade
+          msbuild /p:Configuration=Release db_dll.vcxproj
           cd ..\..
           ::Cyrus SASL
           curl -fsSL -o cyrus-sasl-2.1.26.tar.gz https://github.com/cyrusimap/cyrus-sasl/releases/download/cyrus-sasl-2.1.26/cyrus-sasl-2.1.26.tar.gz
@@ -64,7 +70,7 @@ jobs:
           patch -p1 -i ..\deps\sasl-fix-snprintf-macro.patch
           echo using vsdevcmd ${{ matrix.VSDEVCMD_BAT }}
           '${{ matrix.VSDEVCMD_BAT }}'
-          "${{ matrix.NMAKE }}" /f NTMakefile OPENSSL_INCLUDE=c:\OpenSSL-Win32\include OPENSSL_LIBPATH=c:\OpenSSL-Win32\lib DB_INCLUDE=c:\projects\libvncserver\deps\db\build_win32 DB_LIBPATH=c:\projects\libvncserver\deps\db\build_win32\release DB_LIB=libdb41.lib install
+          nmake /f NTMakefile OPENSSL_INCLUDE=c:\OpenSSL-Win32\include OPENSSL_LIBPATH=c:\OpenSSL-Win32\lib DB_INCLUDE=c:\projects\libvncserver\deps\db\build_win32 DB_LIBPATH=c:\projects\libvncserver\deps\db\build_win32\release DB_LIB=libdb41.lib install
           cd ..
           ::go back to source root
           cd ..
