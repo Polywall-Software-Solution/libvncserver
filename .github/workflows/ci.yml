@@ -14,6 +14,8 @@ jobs:
           - "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\Common7\\IDE\\devenv"
         MSBUILD:
           - "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\MSBuild\\Current\\Bin\\msbuild"
+        NMAKE:
+          - "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\VC\\Tools\\MSVC"
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
@@ -21,6 +23,8 @@ jobs:
         if: ${{ matrix.os == 'windows-2019' }}
         shell: cmd
         run: |
+          cd ${{ matrix.NMAKE }}
+          dir
           ::zlib
           curl -fsSL -o zlib.tar.gz https://github.com/madler/zlib/archive/v1.2.8.tar.gz
           7z x zlib.tar.gz -so | 7z x -si -ttar > nul
