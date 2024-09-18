@@ -23,7 +23,7 @@ jobs:
         if: ${{ matrix.os == 'windows-2019' }}
         shell: cmd
         run: |
-          cd ${{ matrix.NMAKE }}
+          cd "${{ matrix.NMAKE }}"
           dir
           ::zlib
           curl -fsSL -o zlib.tar.gz https://github.com/madler/zlib/archive/v1.2.8.tar.gz
