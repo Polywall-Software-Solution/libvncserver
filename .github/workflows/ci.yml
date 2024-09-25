@@ -20,6 +20,7 @@ jobs:
           - "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\SDK\\ScopeCppSDK\\vc15\\SDK\\\bin"
     runs-on: ${{ matrix.os }}
     steps:
+      - uses: actions/checkout@v4
       - name: Set env vars
         if: ${{ matrix.os == 'windows-2019' }}
         shell: cmd
