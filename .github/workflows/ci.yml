@@ -25,10 +25,10 @@ jobs:
         if: ${{ matrix.os == 'windows-2019' }}
         shell: cmd
         run: |
-          echo "${{ matrix.DEVENV }}" >> $GITHUB_PATH
-          echo "${{ matrix.MSBUILD }}" >> $GITHUB_PATH
-          echo "${{ matrix.NMAKE }}" >> $GITHUB_PATH
-          echo "${{ matrix.RC }}" >> $GITHUB_PATH
+          echo "${{ matrix.DEVENV }}" >> $PATH
+          echo "${{ matrix.MSBUILD }}" >> $PATH
+          echo "${{ matrix.NMAKE }}" >> $PATH
+          echo "${{ matrix.RC }}" >> $PATH
           echo on
           echo "$PATH"
       - uses: actions/checkout@v4
