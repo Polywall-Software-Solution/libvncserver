@@ -20,8 +20,8 @@ jobs:
           - "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\SDK\\ScopeCppSDK\\vc15\\SDK\\\bin"
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v4
-      - name: Windows Build
+      - uses: alex-sandri/nothing-action@v1
+      - name: Set env vars
         if: ${{ matrix.os == 'windows-2019' }}
         shell: cmd
         run: |
@@ -31,6 +31,12 @@ jobs:
           echo "${{ matrix.RC }}" >> $GITHUB_PATH
           echo on
           echo "$PATH"
+      - uses: actions/checkout@v4
+      - name: Windows Build
+        if: ${{ matrix.os == 'windows-2019' }}
+        shell: cmd
+        run: |
+          echo %PATH%
           ::zlib
           curl -fsSL -o zlib.tar.gz https://github.com/madler/zlib/archive/v1.2.8.tar.gz
           7z x zlib.tar.gz -so | 7z x -si -ttar > nul
