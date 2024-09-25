@@ -25,10 +25,11 @@ jobs:
         if: ${{ matrix.os == 'windows-2019' }}
         shell: cmd
         run: |
-          setx /M path "%path%;${{ matrix.DEVENV }}"
+          setx /M path "${{ matrix.DEVENV }}"
           setx /M path "%path%;${{ matrix.MSBUILD }}"
           setx /M path "%path%;${{ matrix.DEVENV }}"
           setx /M path "%path%;${{ matrix.DEVENV }}
+          echo on
           echo %$path%
           ::zlib
           curl -fsSL -o zlib.tar.gz https://github.com/madler/zlib/archive/v1.2.8.tar.gz
