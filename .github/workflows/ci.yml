@@ -25,13 +25,11 @@ jobs:
         if: ${{ matrix.os == 'windows-2019' }}
         shell: cmd
         run: |
-          set PATH=%PATH%;"${{ matrix.DEVENV }}"
-          set PATH=%PATH%;"${{ matrix.MSBUILD }}"
-          set PATH=%PATH%;"${{ matrix.NMAKE }}"
-          set PATH=%PATH%;"${{ matrix.RC }}"
-          cd "${{ matrix.RC }}"
-          dir
-          echo %PATH%
+          echo "${{ matrix.DEVENV }}" >> $GITHUB_PATH
+          echo "${{ matrix.MSBUILD }}" >> $GITHUB_PATH
+          echo "${{ matrix.NMAKE }}" >> $GITHUB_PATH
+          echo "${{ matrix.RC }} >> $GITHUB_PATH
+          echo %GITHUB_PATH%
           ::zlib
           curl -fsSL -o zlib.tar.gz https://github.com/madler/zlib/archive/v1.2.8.tar.gz
           7z x zlib.tar.gz -so | 7z x -si -ttar > nul
