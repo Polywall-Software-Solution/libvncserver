@@ -23,10 +23,7 @@ jobs:
       - name: Set the value
         id: step_one
         run: |
-           echo "${{ matrix.DEVENV }}" | Out-File -FilePath $env:GITHUB_PATH
-           echo "${{ matrix.MSBUILD }}" | Out-File -FilePath $env:GITHUB_PATH
-           echo "${{ matrix.NMAKE }}" | Out-File -FilePath $env:GITHUB_PATH
-           echo "${{ matrix.RC }}" | Out-File -FilePath $env:GITHUB_PATH
+           echo "${{ matrix.DEVENV }};{{ matrix.MSBUILD }};${{ matrix.NMAKE }};${{ matrix.RC }}" | Out-File -FilePath $env:GITHUB_PATH
            echo on
            echo $GITHUB_PATH
       - uses: actions/checkout@v4
