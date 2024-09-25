@@ -20,17 +20,15 @@ jobs:
           - "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\SDK\\ScopeCppSDK\\vc15\\SDK\\\bin"
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v4
-      - name: Set env vars
-        if: ${{ matrix.os == 'windows-2019' }}
-        shell: cmd
+      - name: Set the value
+        id: step_one
         run: |
-          echo "${{ matrix.DEVENV }}" >> $PATH
-          echo "${{ matrix.MSBUILD }}" >> $PATH
-          echo "${{ matrix.NMAKE }}" >> $PATH
-          echo "${{ matrix.RC }}" >> $PATH
-          echo on
-          echo "$PATH"
+           echo "${{ matrix.DEVENV }}" | Out-File -FilePath $env:GITHUB_PATH
+           echo "${{ matrix.MSBUILD }}" | Out-File -FilePath $env:GITHUB_PATH
+           echo "${{ matrix.NMAKE }}" | Out-File -FilePath $env:GITHUB_PATH
+           echo "${{ matrix.RC }}" | Out-File -FilePath $env:GITHUB_PATH
+           echo on
+           echo $GITHUB_PATH
       - uses: actions/checkout@v4
       - name: Windows Build
         if: ${{ matrix.os == 'windows-2019' }}
