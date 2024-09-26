@@ -18,12 +18,16 @@ jobs:
           - "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\VC\\Tools\\MSVC\\14.29.30133\\bin\\Hostx64\\x64"
         RC:
           - "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\SDK\\ScopeCppSDK\\vc15\\SDK\\bin"
+        SDKInclude:
+          - "C:\\Program Files (x86)\\Microsoft SDKs\\Windows\\v7.1A\\Include"
+        SDKLib:
+          - "C:\\Program Files (x86)\\Microsoft SDKs\\Windows\v7.1A\\Lib"
     runs-on: ${{ matrix.os }}
     steps:
       - name: Set the value
         id: step_one
         run: |
-           echo "${{ matrix.DEVENV }};${{ matrix.MSBUILD }};${{ matrix.NMAKE }};${{ matrix.RC }};" | Out-File -FilePath $env:GITHUB_PATH
+           echo "${{ matrix.DEVENV }};${{ matrix.MSBUILD }};${{ matrix.NMAKE }};${{ matrix.RC }};${{ matrix.SDKInclude }};${{ matrix.SDKLib }}" | Out-File -FilePath $env:GITHUB_PATH
            echo on
            echo $GITHUB_PATH
       - uses: actions/checkout@v4
@@ -32,8 +36,8 @@ jobs:
         shell: cmd
         run: |
 
-          Xcopy "C:\Program Files (x86)\Microsoft SDKs\Windows\v7.1A\Include" "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC" /E /H /C /I
-          Xcopy "C:\Program Files (x86)\Microsoft SDKs\Windows\v7.1A\Lib" "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC"
+          ::Xcopy "C:\Program Files (x86)\Microsoft SDKs\Windows\v7.1A\Include" "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC" /E /H /C /I
+          ::Xcopy "C:\Program Files (x86)\Microsoft SDKs\Windows\v7.1A\Lib" "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC"
           echo %PATH%
           ::zlib
           curl -fsSL -o zlib.tar.gz https://github.com/madler/zlib/archive/v1.2.8.tar.gz
