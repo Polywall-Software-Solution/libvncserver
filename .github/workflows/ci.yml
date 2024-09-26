@@ -17,7 +17,7 @@ jobs:
         NMAKE:
           - "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\VC\\Tools\\MSVC\\14.29.30133\\bin\\Hostx64\\x64"
         RC:
-          - "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\SDK\\ScopeCppSDK\\vc15\\SDK\\\bin"
+          - "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\SDK\\ScopeCppSDK\\vc15\\SDK\\bin"
     runs-on: ${{ matrix.os }}
     steps:
       - name: Set the value
@@ -32,8 +32,6 @@ jobs:
         shell: cmd
         run: |
           echo %PATH%
-          cd "${{ matrix.RC }}"
-          dir
           ::zlib
           curl -fsSL -o zlib.tar.gz https://github.com/madler/zlib/archive/v1.2.8.tar.gz
           7z x zlib.tar.gz -so | 7z x -si -ttar > nul
