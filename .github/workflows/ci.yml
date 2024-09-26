@@ -31,8 +31,9 @@ jobs:
         if: ${{ matrix.os == 'windows-2019' }}
         shell: cmd
         run: |
-          dir "C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A"
-          
+          dir "C:\Program Files (x86)\Microsoft SDKs\Windows\v7.1A"
+           echo aaa
+          dir "C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A"
           echo %PATH%
           ::zlib
           curl -fsSL -o zlib.tar.gz https://github.com/madler/zlib/archive/v1.2.8.tar.gz
