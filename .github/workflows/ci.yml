@@ -32,8 +32,8 @@ jobs:
         shell: cmd
         run: |
 
-          Xcopy "C:\Program Files (x86)\Microsoft SDKs\Windows\v7.1A\Include" "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC" /E /H /C /I
-          Xcopy "C:\Program Files (x86)\Microsoft SDKs\Windows\v7.1A\Lib" "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC"
+          Xcopy "C:\Program Files (x86)\Microsoft SDKs\Windows\v7.1A\Include" "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC" /E /H /C /I
+          Xcopy "C:\Program Files (x86)\Microsoft SDKs\Windows\v7.1A\Lib" "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC"
           echo %PATH%
           ::zlib
           curl -fsSL -o zlib.tar.gz https://github.com/madler/zlib/archive/v1.2.8.tar.gz
