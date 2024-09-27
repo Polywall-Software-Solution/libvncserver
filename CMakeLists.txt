@@ -48,7 +48,8 @@ include_directories(
   ${CMAKE_CURRENT_BINARY_DIR}/include
   ${LIBVNCSERVER_DIR}
   ${LIBVNCCLIENT_DIR}
-  ${COMMON_DIR})
+  ${COMMON_DIR}
+  "C:/Program Files (x86)/Microsoft SDKs/Windows/v7.1A/Include")
 
 # all the build configuration switches
 option(LIBVNCSERVER_INSTALL "Generate installation target" ON)
