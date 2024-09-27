@@ -37,7 +37,7 @@ jobs:
         if: ${{ matrix.os == 'windows-2019' }}
         shell: cmd
         run: |
-
+          dir "${{ matrix.RC_SDK }}\Include"
           Xcopy "${{ matrix.SDKInclude }}" "${{ matrix.RC_SDK }}" /E /H /C /I
           Xcopy "${{ matrix.SDKLib }}" "${{ matrix.RC_SDK }}" /E /H /C /I
           echo %PATH%
