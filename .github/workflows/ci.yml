@@ -18,10 +18,12 @@ jobs:
           - "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\VC\\Tools\\MSVC\\14.29.30133\\bin\\Hostx64\\x64"
         RC:
           - "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\SDK\\ScopeCppSDK\\vc15\\SDK\\bin"
+        RC_SDK:
+          - "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\SDK\\ScopeCppSDK\\vc15\\SDK"
         SDKInclude:
-          - "C:\\Program Files (x86)\\Microsoft SDKs\\Windows\\v7.1A\\Include\\"
+          - "C:\\Program Files (x86)\\Microsoft SDKs\\Windows\\v7.1A\\Include"
         SDKLib:
-          - "C:\\Program Files (x86)\\Microsoft SDKs\\Windows\v7.1A\\Lib\\"
+          - "C:\\Program Files (x86)\\Microsoft SDKs\\Windows\v7.1A\\Lib"
     runs-on: ${{ matrix.os }}
     steps:
       - name: Set the value
@@ -36,8 +38,8 @@ jobs:
         shell: cmd
         run: |
 
-          Xcopy "${{ matrix.SDKInclude }}" "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\SDK" /E /H /C /I
-          Xcopy "${{ matrix.SDKLib }}" "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\SDK"
+          Xcopy "${{ matrix.SDKInclude }}" "${{ matrix.RC_SDK }}" /E /H /C /I
+          Xcopy "${{ matrix.SDKLib }}" "${{ matrix.RC_SDK }}" /E /H /C /I
           echo %PATH%
           ::zlib
           curl -fsSL -o zlib.tar.gz https://github.com/madler/zlib/archive/v1.2.8.tar.gz
