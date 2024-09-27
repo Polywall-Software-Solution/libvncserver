@@ -36,8 +36,8 @@ jobs:
         shell: cmd
         run: |
 
-          Xcopy "${{ matrix.SDKInclude }}" "${{ matrix.RC }}\..\" /E /H /C /I
-          Xcopy "${{ matrix.SDKLib }}" "${{ matrix.RC }}\..\"
+          Xcopy "${{ matrix.SDKInclude }}" "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\SDK" /E /H /C /I
+          Xcopy "${{ matrix.SDKLib }}" "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\SDK\ScopeCppSDK\vc15\SDK"
           echo %PATH%
           ::zlib
           curl -fsSL -o zlib.tar.gz https://github.com/madler/zlib/archive/v1.2.8.tar.gz
