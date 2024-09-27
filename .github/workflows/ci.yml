@@ -19,9 +19,9 @@ jobs:
         RC:
           - "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\SDK\\ScopeCppSDK\\vc15\\SDK\\bin"
         SDKInclude:
-          - "C:\\Program Files (x86)\\Microsoft SDKs\\Windows\\v7.1A\\Include"
+          - "C:\\Program Files (x86)\\Microsoft SDKs\\Windows\\v7.1A\\Include\\"
         SDKLib:
-          - "C:\\Program Files (x86)\\Microsoft SDKs\\Windows\v7.1A\\Lib"
+          - "C:\\Program Files (x86)\\Microsoft SDKs\\Windows\v7.1A\\Lib\\"
     runs-on: ${{ matrix.os }}
     steps:
       - name: Set the value
@@ -36,8 +36,8 @@ jobs:
         shell: cmd
         run: |
 
-          Xcopy "C:\Program Files (x86)\Microsoft SDKs\Windows\v7.1A\Include" "${{ matrix.RC }}" /E /H /C /I
-          Xcopy "C:\Program Files (x86)\Microsoft SDKs\Windows\v7.1A\Lib" "${{ matrix.RC }}\VC"
+          Xcopy "C:\Program Files (x86)\Microsoft SDKs\Windows\v7.1A\Include\\" "${{ matrix.RC }}" /E /H /C /I
+          Xcopy "C:\Program Files (x86)\Microsoft SDKs\Windows\v7.1A\Lib\\" "${{ matrix.RC }}\VC"
           echo %PATH%
           ::zlib
           curl -fsSL -o zlib.tar.gz https://github.com/madler/zlib/archive/v1.2.8.tar.gz
