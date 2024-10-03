@@ -21,7 +21,7 @@ jobs:
         RC_SDK_Lib:
           - "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\SDK\\ScopeCppSDK\\vc15\\SDK\\Lib"
         RC_SDK_include:
-          - "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\SDK\\ScopeCppSDK\\vc15\\SDK\\include\\um"
+          - "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\SDK\\ScopeCppSDK\\vc15\\SDK\\include\\shared"
         SDKInclude:
           - "C:\\Program Files (x86)\\Microsoft SDKs\\Windows\\v7.1A\\Include"
         SDKLib:
