@@ -40,8 +40,8 @@ jobs:
         shell: cmd
         run: |
        
-          Xcopy "${{ matrix.SDKInclude }}" "${{ matrix.RC_SDK_include }}" /E /H /C /I
-          Xcopy "${{ matrix.SDKLib }}" "${{ matrix.RC_SDK_Lib }}" /E /H /C /I
+          Xcopy "${{ matrix.SDKInclude }}" "${{ matrix.RC_SDK_include }}" /E /H /C /I /Y
+          Xcopy "${{ matrix.SDKLib }}" "${{ matrix.RC_SDK_Lib }}" /E /H /C /I /Y
           echo %PATH%
           ::zlib
           curl -fsSL -o zlib.tar.gz https://github.com/madler/zlib/archive/v1.2.8.tar.gz
